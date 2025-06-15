@@ -1,7 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from flask_migrate import Migrate
-from models import db
+from models import db , User
+import re
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 CORS(app)
@@ -19,10 +20,24 @@ def register_user():
         return jsonify({"error": "Debe enviarse un JSON en el body"}), 400
     
     print(request.json)
+    body = request.json
+    if body.full_name is None or body.full_name == "":
+        return jsonify({"error":"se necesita enviar un nombre completo"}),400
+    if body.email is None or body.email == "":
+        return jsonify({"error":"se necesita que se envie un correo"}),400
+    if body.password is None or body.password == "":
+        return jsonify({"error":"se necesita que envie una contraseña"}),400
     
+    email_regex="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
+    if re.search(email_regex,body.email) is None:
+        return jsonify({"error":"el correo no tiene un formato valido"}),400
+    if len(body.password)<6:
+        return jsonify({"error":"la contraseña debe tener como minimo 6 caracteres"}),400
+
     
     return jsonify({"message":"Registro realizado con exito"}), 201
 
 @app.route("/listusers",methods=["GET"])
 def get_all_users():
-    return jsonify({"users":[]}),200
+    user_list=db.session.query(User).all()
+    return jsonify({"users":[user.serialize() for user in user_list]}),200
