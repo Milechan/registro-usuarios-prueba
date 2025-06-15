@@ -9,6 +9,8 @@ dev="flask run --debug"
 [packages]
 flask = "*"
 flask-cors = "*"
+flask-sqlalchemy = "*"
+flask-migrate = "*"
 
 [dev-packages]
 

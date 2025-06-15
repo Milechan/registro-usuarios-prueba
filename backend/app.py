@@ -1,22 +1,29 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///app.db'
 CORS(app)
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 @app.route("/")
 def hello_world():
-    return "<p>Hello, World!</p>"
+    return "<p></p>"
 
-@app.route('/register', methods=['POST'])
+@app.route("/register", methods=["POST"])
 def register_user():
     # valida que en el body venga un json
-    if request.content_type != 'application/json':
-        return jsonify({'error': 'Debe enviarse un JSON en el body'}), 400
+    if request.content_type != "application/json":
+        return jsonify({"error": "Debe enviarse un JSON en el body"}), 400
     
     print(request.json)
     
     
-    return jsonify({'message':'Registro realizado con exito'}), 201
+    return jsonify({"message":"Registro realizado con exito"}), 201
 
+@app.route("/listusers",methods=["GET"])
+def get_all_users():
+    return jsonify({"users":[]}),200
