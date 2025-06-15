@@ -40,7 +40,7 @@ def register_user():
     new_user = User()
     new_user.full_name=body.full_name
     new_user.email=body.email
-    new_user.password=body.password
+    new_user.password=new_user.hash_password(body.password)
     db.session.add(new_user)
     db.session.commit()
     

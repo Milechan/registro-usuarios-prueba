@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import Integer, String
 from flask_sqlalchemy import SQLAlchemy
-
+from werkzeug.security import generate_password_hash
 db = SQLAlchemy()
 
 
@@ -19,3 +19,6 @@ class User(db.Model):
             "full_name":self.full_name,
             "email":self.email
         }
+    def hash_password(self,password):
+        self.password=generate_password_hash(password)
+        return self.password
