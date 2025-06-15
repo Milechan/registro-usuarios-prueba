@@ -1,12 +1,18 @@
-from app import db
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Integer, String, Boolean, DateTime, ForeignKey, Text, Float
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
 
 
 class User(db.Model):
-    id= db.Column(db.Integer,primary_key=True)
-    full_name=db.Column(db.String(80),nullable=False)
-    email=db.Column(db.String(150),nullable=False,unique=True)
-    password=db.Column(db.String(200),nullable=False)
+    __tablename__="user"
+    id: Mapped[int] = mapped_column(Integer, primary_key=True)
+    full_name: Mapped[str] = mapped_column(String, nullable=False)
+    email: Mapped[str] = mapped_column(String, nullable=False, unique=True)
+    password: Mapped[str] = mapped_column(String, nullable=False)
+
+
     def serialize(self):
         return{
             "id":self.id,

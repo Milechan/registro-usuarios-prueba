@@ -11,6 +11,7 @@ flask = "*"
 flask-cors = "*"
 flask-sqlalchemy = "*"
 flask-migrate = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
