@@ -33,7 +33,16 @@ def register_user():
         return jsonify({"error":"el correo no tiene un formato valido"}),400
     if len(body.password)<6:
         return jsonify({"error":"la contraseña debe tener como minimo 6 caracteres"}),400
+    user_exist = db.session.query(User).filter_by(email=body.email).one_or_none()
+    if user_exist is not None:
+        return jsonify({"error":"ya existe un usuario con ese correo"}),409
 
+    new_user = User()
+    new_user.full_name=body.full_name
+    new_user.email=body.email
+    new_user.password=body.password
+    db.session.add(new_user)
+    db.session.commit()
     
     return jsonify({"message":"Registro realizado con exito"}), 201
 
