@@ -1,7 +1,9 @@
 import { useRef } from "react"
+import { useNavigate } from "react-router"
 
 const Register = () => {
-
+    const navigate=useNavigate()
+    
     const name = useRef(null)
     const email = useRef(null)
     const password = useRef(null)
@@ -69,7 +71,7 @@ const Register = () => {
                 <div onClick={()=>sendRegister()} className="btn btn-primary">Registrar</div>
             </div>
             <div className="button-container">
-                <div className="btn btn-primary">Lista de Usuarios Registrados</div>
+                <div onClick={()=>navigate("/list")} className="btn btn-primary">Lista de Usuarios Registrados</div>
             </div>
         </div>
     )
