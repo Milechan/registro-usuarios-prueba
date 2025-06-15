@@ -19,8 +19,37 @@ const Register = () => {
         }
         return true
     }
+    const sendRegister = async (isValid) => {
+        if (isValid == false) {
+            console.log("formulario no valido")
+        }
+        else {
+            //enviar formulario
+            try {
+                const request = await fetch("http://localhost:5000/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        "full_name": name.current.value,
+                        "email": email.current.value,
+                        "password": password.current.value
+                    })
+                })
+                const data = await request.json()
+                console.log(data)
+                if (request.status != 201) {
+                    console.log("hubo un error al registrar este usuario")
+                }
+                console.log("registro fue exitoso")
 
-    
+            } catch (error) {
+                console.error(error)
+            }
+        }
+    }
+
     return (
         <div className="container-Register">
             <div className="mb-3">
@@ -37,7 +66,7 @@ const Register = () => {
             </div>
 
             <div className="button-container">
-                <div className="btn btn-primary">Registrar</div>
+                <div onClick={()=>sendRegister()} className="btn btn-primary">Registrar</div>
             </div>
             <div className="button-container">
                 <div className="btn btn-primary">Lista de Usuarios Registrados</div>
