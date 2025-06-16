@@ -1,28 +1,50 @@
 import { useRef } from "react"
 import { useNavigate } from "react-router"
 import "../styles/register.css"
+import Swal from "sweetalert2"
 
 const Register = () => {
-    const navigate=useNavigate()
-    
+    const navigate = useNavigate()
+
     const name = useRef(null)
     const email = useRef(null)
     const password = useRef(null)
 
     const validate = () => {
         if (name.current.value == "" || email.current.value == "" || password.current.value == "") {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "hay un campo vacio",
+                showConfirmButton: false,
+                timer: 1500
+            })
             return false
         }
         const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!emailRegex.test(email.current.value)) {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "este email no tiene un formato valido",
+                showConfirmButton: false,
+                timer: 1500
+            })
             return false
         }
         if (password.current.value.length < 6) {
+            Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: "la Contraseña debe tener 6 caracteres como minimo",
+                showConfirmButton: false,
+                timer: 1500
+            })
             return false
         }
         return true
     }
-    const clearForm =()=>{
+    const clearForm = () => {
         name.current.value = ''
         email.current.value = ''
         password.current.value = ''
@@ -52,6 +74,13 @@ const Register = () => {
                     return
                 }
                 console.log("registro fue exitoso")
+                Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "se logró registrar",
+                showConfirmButton: false,
+                timer: 1500
+            })
                 clearForm()
 
             } catch (error) {
@@ -76,10 +105,10 @@ const Register = () => {
             </div>
 
             <div className="button-container">
-                <div onClick={()=>sendRegister(validate())} className="btn btn-primary">Registrar</div>
+                <div onClick={() => sendRegister(validate())} className="btn btn-primary">Registrar</div>
             </div>
             <div className="button-container">
-                <div onClick={()=>navigate("/list")} className="btn btn-primary">Lista de Usuarios Registrados</div>
+                <div onClick={() => navigate("/list")} className="btn btn-primary">Lista de Usuarios Registrados</div>
             </div>
         </div>
     )
