@@ -36,7 +36,11 @@ body{
 
 
 .btn-custom{
-    background-color: rgb(187, 122, 248);
+    background-color: rgb(178, 96, 255);
     font-size: 30px;
     
+}
+.btn-custom:hover{
+    background-color: rgb(145, 28, 255);
+
 }

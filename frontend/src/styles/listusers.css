@@ -22,3 +22,7 @@
     justify-content: center;
     font-size: 35px;
 }
+
+.btn-custom-list:hover{
+    background-color: rgb(145, 28, 255);
+}

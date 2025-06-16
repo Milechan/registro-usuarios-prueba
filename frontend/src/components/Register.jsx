@@ -13,7 +13,6 @@ const Register = () => {
     const validate = () => {
         if (name.current.value == "" || email.current.value == "" || password.current.value == "") {
             Swal.fire({
-                position: "top-end",
                 icon: "error",
                 title: "hay un campo vacio",
                 showConfirmButton: false,
@@ -24,7 +23,6 @@ const Register = () => {
         const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!emailRegex.test(email.current.value)) {
             Swal.fire({
-                position: "top-end",
                 icon: "error",
                 title: "este email no tiene un formato valido",
                 showConfirmButton: false,
@@ -34,7 +32,6 @@ const Register = () => {
         }
         if (password.current.value.length < 6) {
             Swal.fire({
-                position: "top-end",
                 icon: "error",
                 title: "la Contraseña debe tener 6 caracteres como minimo",
                 showConfirmButton: false,
@@ -75,7 +72,6 @@ const Register = () => {
                 }
                 console.log("registro fue exitoso")
                 Swal.fire({
-                position: "top-end",
                 icon: "success",
                 title: "se logró registrar",
                 showConfirmButton: false,
