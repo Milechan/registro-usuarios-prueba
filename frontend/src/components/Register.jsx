@@ -90,7 +90,11 @@ const Register = () => {
     }
 
     return (
-        <div className="container-Register">
+       <div className="container">
+        <div>
+            <div className="title-register">🌸Registrate!🌸</div>
+            <div className="container-Register">
+                
             <div className="mb-3">
                 <label for="Input1" className="form-label">Nombre Completo</label>
                 <input ref={name} type="text" className="form-control" id="Input1" placeholder="Escribe Tu Nombre" />
@@ -105,12 +109,14 @@ const Register = () => {
             </div>
 
             <div className="button-container">
-                <div onClick={() => sendRegister(validate())} className="btn btn-primary">Registrar</div>
-            </div>
-            <div className="button-container">
-                <div onClick={() => navigate("/list")} className="btn btn-primary">Lista de Usuarios Registrados</div>
+                <div onClick={() => sendRegister(validate())} className="btn btn-custom">Registrar</div>
+                <div onClick={() => navigate("/list")} className="btn btn-custom">Lista de Usuarios Registrados</div>     
             </div>
         </div>
+        </div>
+         
+       </div>
+       
     )
 }
 

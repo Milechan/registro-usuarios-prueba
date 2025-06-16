@@ -1,0 +1,24 @@
+.container-list{
+    padding-bottom: 50px;
+    margin-top: 50px;
+    margin-left: 150px;
+    margin-right: 150px;
+    
+}
+
+.title{
+     font-size: 50px;
+     margin-top: 30px;
+     margin-bottom: 25px;
+}
+.container-user-list{
+    font-size: 32px;
+    margin-bottom: 40px;
+}
+.btn-custom-list{
+    background-color: rgb(187, 122, 248);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+}

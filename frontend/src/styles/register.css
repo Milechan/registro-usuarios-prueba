@@ -1,12 +1,42 @@
+body{
+    background-color: rgb(238, 183, 238);
+    font-family: "Berkshire Swash", serif;
+}
 .container-Register{
-    
-    padding-top: 250px;
+    width: 1200px;
+    padding-top: 100px;
+}
+.form-label{
+    font-size: 30px;
+}    
+
+.container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
     
 }
 
-.button-container{
-    margin: 30px;
-    flex-direction: row;
+.title-register{
+    margin-top: 60px;
+    font-size: 45px;
+    display: flex;
     justify-content: center;
     align-items: center;
+}
+.button-container{
+    margin: 25px;
+   justify-content:space-evenly;
+   display:flex;
+    margin-top: 60px;
+    
+   
+}
+
+
+
+.btn-custom{
+    background-color: rgb(187, 122, 248);
+    font-size: 30px;
+    
 }

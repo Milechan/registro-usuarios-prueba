@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
-
+import "../styles/listusers.css"
 const ListUsers = () => {
     const [listUsers,setListUsers]=useState([])
     const navigate = useNavigate()
@@ -25,15 +25,15 @@ const ListUsers = () => {
         getUsers()
     }, [])
     return (
-        <div>
-            <h1>Lista de Usuarios Registrados</h1>
-            <ul className="container-list">
+        <div className="container-list">
+            <h1 className="title"> ✨Lista de Usuarios Registrados✨</h1>
+            <ul className="container-user-list">
                 {listUsers.map((user)=>{
                     return <li>({user.full_name}) ({user.email})</li>
                 })}
               {listUsers.length==0?<div>no se encontraron usuarios</div>:""}  
             </ul>
-            <div onClick={() => navigate("/")} className="btn btn-primary"> Volver al registro
+            <div onClick={() => navigate("/")} className="btn btn-custom-list"> Volver al registro
             </div>
         </div>
     )
