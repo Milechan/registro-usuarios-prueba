@@ -28,17 +28,12 @@ body{
     margin: 25px;
    justify-content:space-evenly;
    display:flex;
-    margin-top: 60px;
-    
-   
+    margin-top: 60px;     
 }
-
-
 
 .btn-custom{
     background-color: rgb(178, 96, 255);
-    font-size: 30px;
-    
+    font-size: 30px;   
 }
 .btn-custom:hover{
     background-color: rgb(145, 28, 255);
