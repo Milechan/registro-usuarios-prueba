@@ -1,0 +1,12 @@
+.container-Register{
+    
+    padding-top: 250px;
+    
+}
+
+.button-container{
+    margin: 30px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}

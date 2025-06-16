@@ -1,5 +1,6 @@
 import { useRef } from "react"
 import { useNavigate } from "react-router"
+import "../styles/register.css"
 
 const Register = () => {
     const navigate=useNavigate()
@@ -12,7 +13,7 @@ const Register = () => {
         if (name.current.value == "" || email.current.value == "" || password.current.value == "") {
             return false
         }
-        const emailRegex = new RegExp("^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$")
+        const emailRegex = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!emailRegex.test(email.current.value)) {
             return false
         }
@@ -20,6 +21,11 @@ const Register = () => {
             return false
         }
         return true
+    }
+    const clearForm =()=>{
+        name.current.value = ''
+        email.current.value = ''
+        password.current.value = ''
     }
     const sendRegister = async (isValid) => {
         if (isValid == false) {
@@ -43,8 +49,10 @@ const Register = () => {
                 console.log(data)
                 if (request.status != 201) {
                     console.log("hubo un error al registrar este usuario")
+                    return
                 }
                 console.log("registro fue exitoso")
+                clearForm()
 
             } catch (error) {
                 console.error(error)
@@ -68,7 +76,7 @@ const Register = () => {
             </div>
 
             <div className="button-container">
-                <div onClick={()=>sendRegister()} className="btn btn-primary">Registrar</div>
+                <div onClick={()=>sendRegister(validate())} className="btn btn-primary">Registrar</div>
             </div>
             <div className="button-container">
                 <div onClick={()=>navigate("/list")} className="btn btn-primary">Lista de Usuarios Registrados</div>

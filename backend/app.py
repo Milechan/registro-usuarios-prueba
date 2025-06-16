@@ -21,26 +21,26 @@ def register_user():
     
     print(request.json)
     body = request.json
-    if body.full_name is None or body.full_name == "":
+    if body["full_name"] is None or body["full_name"] == "":
         return jsonify({"error":"se necesita enviar un nombre completo"}),400
-    if body.email is None or body.email == "":
+    if body["email"] is None or body["email"] == "":
         return jsonify({"error":"se necesita que se envie un correo"}),400
-    if body.password is None or body.password == "":
+    if body["password"] is None or body["password"] == "":
         return jsonify({"error":"se necesita que envie una contraseña"}),400
     
-    email_regex="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
-    if re.search(email_regex,body.email) is None:
+    email_regex = re.compile(r"^[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}$")
+    if re.match(email_regex,body["email"]) is None:
         return jsonify({"error":"el correo no tiene un formato valido"}),400
-    if len(body.password)<6:
+    if len(body["password"])<6:
         return jsonify({"error":"la contraseña debe tener como minimo 6 caracteres"}),400
-    user_exist = db.session.query(User).filter_by(email=body.email).one_or_none()
+    user_exist = db.session.query(User).filter_by(email=body["email"]).one_or_none()
     if user_exist is not None:
         return jsonify({"error":"ya existe un usuario con ese correo"}),409
 
     new_user = User()
-    new_user.full_name=body.full_name
-    new_user.email=body.email
-    new_user.password=new_user.hash_password(body.password)
+    new_user.full_name=body["full_name"]
+    new_user.email=body["email"]
+    new_user.password=new_user.hash_password(body["password"])
     db.session.add(new_user)
     db.session.commit()
     
